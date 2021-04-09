@@ -1,7 +1,9 @@
 package com.deybson.sisDeCarros.api.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserRepresantation {
 	
@@ -9,7 +11,8 @@ public class UserRepresantation {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private LocalDateTime birthDay;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate birthDay;
 	private String login;
 	private String password ;
 	private String phone;
@@ -39,10 +42,10 @@ public class UserRepresantation {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public LocalDateTime getBirthDay() {
+	public LocalDate getBirthDay() {
 		return birthDay;
 	}
-	public void setBirthDay(LocalDateTime birthDay) {
+	public void setBirthDay(LocalDate birthDay) {
 		this.birthDay = birthDay;
 	}
 	public String getLogin() {

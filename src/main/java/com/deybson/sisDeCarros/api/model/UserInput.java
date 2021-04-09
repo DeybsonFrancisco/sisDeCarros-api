@@ -1,10 +1,13 @@
 package com.deybson.sisDeCarros.api.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class UserInput {
 	
@@ -19,10 +22,14 @@ public class UserInput {
 	private String email;
 	
 	@NotNull
-	private LocalDateTime birthday;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private LocalDate birthDay;
 	
-	@NotNull
+	@NotBlank
 	private String login;
+	
+	@NotBlank
+	private String password;
 	
 	private String phone;
 
@@ -50,12 +57,12 @@ public class UserInput {
 		this.email = email;
 	}
 
-	public LocalDateTime getBirthday() {
-		return birthday;
+	public LocalDate getBirthDay() {
+		return birthDay;
 	}
 
-	public void setBirthday(LocalDateTime birthday) {
-		this.birthday = birthday;
+	public void setBirthDay(LocalDate birthday) {
+		this.birthDay = birthday;
 	}
 
 	public String getLogin() {
@@ -64,6 +71,14 @@ public class UserInput {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPhone() {

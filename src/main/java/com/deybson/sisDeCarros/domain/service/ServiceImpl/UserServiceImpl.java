@@ -13,7 +13,7 @@ import com.deybson.sisDeCarros.domain.repository.UserRepository;
 import com.deybson.sisDeCarros.domain.service.UserService;
 
 @Service
-public class UsuarioServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository repository;

@@ -1,6 +1,6 @@
 package com.deybson.sisDeCarros.domain.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,12 +18,12 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private LocalDateTime birthDay;
+	private LocalDate birthDay;
 	private String login;
 	private String password ;
 	private String phone;
 	
-	@OneToMany(mappedBy = "car")
+	@OneToMany(mappedBy = "idUser")
 	private List<Car> cars;
 	
 	@Override
@@ -75,10 +75,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public LocalDateTime getBirthDay() {
+	public LocalDate getBirthDay() {
 		return birthDay;
 	}
-	public void setBirthDay(LocalDateTime birthDay) {
+	public void setBirthDay(LocalDate birthDay) {
 		this.birthDay = birthDay;
 	}
 	public String getLogin() {
