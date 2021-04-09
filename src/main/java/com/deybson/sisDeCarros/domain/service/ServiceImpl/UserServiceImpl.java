@@ -2,6 +2,7 @@ package com.deybson.sisDeCarros.domain.service.ServiceImpl;
 
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,8 +41,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update(Long id, User user) {
-		if (repository.existsById(id))
-			return repository.save(user);
+		if (repository.existsById(id)) {
+			User userSave = repository.findById(id).get();
+			BeanUtils.copyProperties(user, userSave, "id", "cars");
+			return repository.save(userSave);
+		}
+			
 
 		throw new UserException("User not exist");
 	}
@@ -49,9 +54,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void remove(Long id) {
 		if (!repository.existsById(id))
-			repository.deleteById(id);
+			throw new UserException("User not exist");
 
-		throw new UserException("User not exist");
+		repository.deleteById(id);
 	}
 
 }

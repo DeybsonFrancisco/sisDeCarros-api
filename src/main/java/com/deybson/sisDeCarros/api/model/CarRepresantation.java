@@ -3,7 +3,7 @@ package com.deybson.sisDeCarros.api.model;
 public class CarRepresantation {
 
 	private Long id;
-	private int ano;
+	private int year;
 	private String licensePlate;
 	private String model;
 	private String color;
@@ -14,11 +14,11 @@ public class CarRepresantation {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getAno() {
-		return ano;
+	public int getYear() {
+		return year;
 	}
-	public void setAno(int ano) {
-		this.ano = ano;
+	public void setYear(int ano) {
+		this.year = ano;
 	}
 	public String getLicensePlate() {
 		return licensePlate;

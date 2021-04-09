@@ -12,14 +12,14 @@ import javax.persistence.ManyToOne;
 public class Car {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private int ano;
+	private int year;
 	private String licensePlate;
 	private String model;
 	private String color;
-	@ManyToOne
-	private User idUser;
+	@ManyToOne(targetEntity = User.class)
+	private User user;
 	
 	
 	
@@ -52,11 +52,11 @@ public class Car {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getAno() {
-		return ano;
+	public int getYear() {
+		return year;
 	}
-	public void setAno(int ano) {
-		this.ano = ano;
+	public void setYear(int year) {
+		this.year = year;
 	}
 	public String getLicensePlate() {
 		return licensePlate;
@@ -76,6 +76,13 @@ public class Car {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	
 	
 }

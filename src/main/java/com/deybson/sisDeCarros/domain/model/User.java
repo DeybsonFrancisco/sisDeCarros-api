@@ -1,6 +1,7 @@
 package com.deybson.sisDeCarros.domain.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class User {
@@ -18,13 +21,14 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate birthDay;
 	private String login;
 	private String password ;
 	private String phone;
 	
-	@OneToMany(mappedBy = "idUser")
-	private List<Car> cars;
+	@OneToMany(mappedBy = "user")
+	private List<Car> cars = new ArrayList<>();
 	
 	@Override
 	public int hashCode() {

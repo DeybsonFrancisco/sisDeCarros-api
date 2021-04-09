@@ -11,4 +11,5 @@ import com.deybson.sisDeCarros.domain.model.Car;
 public interface CarRepository extends JpaRepository<Car, Long>{
 
 	Optional<Car> findBylicensePlate(String licensePlate);
+	boolean existsBylicensePlate(String licensePlate);
 }

@@ -1,11 +1,12 @@
 package com.deybson.sisDeCarros.api.model;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class CarInput {
 	
-	@NotBlank
-	private int ano;
+	@NotNull
+	private int year;
 	
 	@NotBlank
 	private String licensePlate;
@@ -16,15 +17,15 @@ public class CarInput {
 	@NotBlank
 	private String color;
 	
-	@NotBlank
-	private Long idUser;
+	@NotNull
+	private Long userId;
 
-	public int getAno() {
-		return ano;
+	public int getYear() {
+		return year;
 	}
 
-	public void setAno(int ano) {
-		this.ano = ano;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public String getLicensePlate() {
@@ -51,12 +52,12 @@ public class CarInput {
 		this.color = color;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setUserId(Long userId) {
+		this.userId= userId;
 	}
 	
 	

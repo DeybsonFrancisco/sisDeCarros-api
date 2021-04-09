@@ -1,6 +1,7 @@
 package com.deybson.sisDeCarros.api.controller;
 
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -79,7 +80,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> remove(@PathVariable Long id){
+	public ResponseEntity<Object> remove(@PathVariable Long id){
 		service.remove(id);
 		return ResponseEntity.status(403).build();
 	}

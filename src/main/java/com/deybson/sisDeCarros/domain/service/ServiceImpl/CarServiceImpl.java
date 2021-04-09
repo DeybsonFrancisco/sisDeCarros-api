@@ -12,11 +12,11 @@ import com.deybson.sisDeCarros.domain.repository.CarRepository;
 import com.deybson.sisDeCarros.domain.service.CarService;
 
 @Service
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository repository;
-	
+
 	@Override
 	public Optional<List<Car>> findAll() {
 		return Optional.of(repository.findAll());
@@ -29,10 +29,11 @@ public class CarServiceImpl implements CarService{
 
 	@Override
 	public Car save(Car car) {
-		if(repository.findBylicensePlate(car.getLicensePlate()).isPresent()){
-			throw new CarException("Already exist a car whit this licensePlate");
+		if (!repository.existsBylicensePlate(car.getLicensePlate())) {
+			return repository.saveAndFlush(car);
 		}
-		return repository.save(car);
+		throw new CarException("Already exist a car whit this licensePlate");
+
 	}
 
 }
