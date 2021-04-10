@@ -17,6 +17,6 @@ CREATE TABLE car(
 	color VARCHAR(60),
 	user_id BIGINT NOT NULL,
 	
-	FOREIGN KEY (user_id) REFERENCES user(id))
+	FOREIGN KEY (user_id) REFERENCES user(id));
 	
 	

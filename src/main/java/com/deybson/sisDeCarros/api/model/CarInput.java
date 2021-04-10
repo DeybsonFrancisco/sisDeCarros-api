@@ -3,6 +3,7 @@ package com.deybson.sisDeCarros.api.model;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
 public class CarInput {
 	
 	@NotNull

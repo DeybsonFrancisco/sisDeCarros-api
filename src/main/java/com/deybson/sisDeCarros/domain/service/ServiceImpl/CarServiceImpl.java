@@ -30,7 +30,8 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public Car save(Car car) {
 		if (!repository.existsBylicensePlate(car.getLicensePlate())) {
-			return repository.saveAndFlush(car);
+		Car novocarro = car;
+			return repository.save(novocarro);
 		}
 		throw new CarException("Already exist a car whit this licensePlate");
 

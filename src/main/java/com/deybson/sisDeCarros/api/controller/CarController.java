@@ -47,6 +47,7 @@ public class CarController {
 	@PostMapping
 	public ResponseEntity<CarRepresantation> save(@Valid @RequestBody CarInput carInput ){
 		Car car = toEntity(carInput);
+		car.setId(null);
 		CarRepresantation carModel = toModel(service.save(car));
 		return ResponseEntity.status(201).body(carModel);
 	}
