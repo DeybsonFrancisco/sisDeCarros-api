@@ -1,4 +1,4 @@
-package com.deybson.sisDeCarros.domain.service.ServiceImpl;
+package com.deybson.sisDeCarros.domain.service.serviceImpl;
 
 import java.util.Optional;
 
@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.deybson.sisDeCarros.domain.exception.UserException;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
 		}if(repository.findByEmail(user.getEmail()).isPresent()) {
 			throw new UserException("Email already exist");
 		}
+			user.setPassword(encodePassword(user.getPassword()));
 			return repository.save(user);
 	}
 
@@ -59,4 +61,14 @@ public class UserServiceImpl implements UserService {
 		repository.deleteById(id);
 	}
 
+	public User findByLogin(String login) {
+		User user = repository.findByLogin(login)
+				.orElseThrow(() -> new UserException("Invalide login or password"));
+		return user;
+	}
+	private String encodePassword(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String passwordEncode = encoder.encode(password);
+		return passwordEncode;
+	}
 }

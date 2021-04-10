@@ -29,7 +29,7 @@ import com.deybson.sisDeCarros.domain.model.User;
 import com.deybson.sisDeCarros.domain.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 	
 	@Autowired
