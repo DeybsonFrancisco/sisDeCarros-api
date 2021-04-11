@@ -13,8 +13,6 @@ import javax.crypto.SecretKey;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

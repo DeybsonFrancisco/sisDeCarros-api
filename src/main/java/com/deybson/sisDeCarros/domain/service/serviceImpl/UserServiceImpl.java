@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(User user) {
 		if (repository.findByLogin(user.getLogin()).isPresent()) {
-			throw new UserException("Login already exist");
+			throw new UserException("Login already exist", HttpStatus.BAD_REQUEST);
 		}if(repository.findByEmail(user.getEmail()).isPresent()) {
-			throw new UserException("Email already exist");
+			throw new UserException("Email already exist", HttpStatus.BAD_REQUEST);
 		}
 			user.setPassword(encodePassword(user.getPassword()));
 			return repository.save(user);
@@ -50,20 +51,20 @@ public class UserServiceImpl implements UserService {
 		}
 			
 
-		throw new UserException("User not exist");
+		throw new UserException("User not exist", HttpStatus.BAD_REQUEST);
 	}
 
 	@Override
 	public void remove(Long id) {
 		if (!repository.existsById(id))
-			throw new UserException("User not exist");
+			throw new UserException("User not exist", HttpStatus.BAD_REQUEST);
 
 		repository.deleteById(id);
 	}
 
 	public User findByLogin(String login) {
 		User user = repository.findByLogin(login)
-				.orElseThrow(() -> new UserException("Invalide login or password"));
+				.orElseThrow(() -> new UserException("Invalide login or password", HttpStatus.UNAUTHORIZED));
 		return user;
 	}
 	private String encodePassword(String password) {

@@ -21,7 +21,7 @@ import com.deybson.sisDeCarros.domain.service.serviceImpl.security.JwtUserDetail
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/sing")
+@RequestMapping("/api/signin")
 public class JwtAuthenticationController {
 
 @Autowired

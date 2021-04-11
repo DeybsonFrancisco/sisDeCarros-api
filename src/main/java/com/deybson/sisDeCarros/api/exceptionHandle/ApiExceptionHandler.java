@@ -43,8 +43,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(UserException.class)
-	public ResponseEntity<Object> userExceptionHandler(UserException ex, WebRequest request) {
-		HttpStatus status = HttpStatus.BAD_REQUEST;
+	public ResponseEntity<Object> userExceptionHandler(UserException ex, WebRequest request, HttpStatus status) {
 
 		var problema = new Problema();
 		problema.setTitulo(ex.getMessage());
