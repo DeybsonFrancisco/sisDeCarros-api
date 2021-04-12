@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -41,10 +42,21 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 		return super.handleExceptionInternal(ex, problema, headers, status, request);
 	}
+	
+	@ExceptionHandler(InternalAuthenticationServiceException.class)
+	public ResponseEntity<Object> userExceptionHandler(InternalAuthenticationServiceException ex,  WebRequest request) {
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		var problema = new Problema();
+		problema.setTitulo(ex.getMessage());
+		problema.setStatus(status.value());
+		problema.setDatahora(LocalDateTime.now());
+
+		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+	}
 
 	@ExceptionHandler(UserException.class)
-	public ResponseEntity<Object> userExceptionHandler(UserException ex, WebRequest request, HttpStatus status) {
-
+	public ResponseEntity<Object> userExceptionHandler(UserException ex,  WebRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
 		var problema = new Problema();
 		problema.setTitulo(ex.getMessage());
 		problema.setStatus(status.value());

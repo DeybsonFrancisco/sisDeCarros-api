@@ -20,7 +20,7 @@ import com.deybson.sisDeCarros.domain.service.serviceImpl.security.JwtUserDetail
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins="*")
 @RequestMapping("/api/signin")
 public class JwtAuthenticationController {
 
