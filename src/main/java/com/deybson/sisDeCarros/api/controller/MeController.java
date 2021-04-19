@@ -17,7 +17,7 @@ import com.deybson.sisDeCarros.domain.service.UserService;
 
 @RestController
 @RequestMapping("/api/me")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class MeController {
 	
 	@Autowired
